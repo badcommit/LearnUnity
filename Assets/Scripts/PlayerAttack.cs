@@ -9,12 +9,14 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject[] fireballs;
     private Animator anim;
     private PlayerMovement playerMovement;
+    private OpenAPITest openAPITest;
     private float cooldownTimer = Mathf.Infinity;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
+        openAPITest = GetComponent<OpenAPITest>();
     }
 
     // Update is called once per frame
@@ -31,6 +33,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Attack()
     {
+        //openAPITest.ApiTest();
         anim.SetTrigger("attack");
         cooldownTimer = 0;
         int f = FindFireball();
