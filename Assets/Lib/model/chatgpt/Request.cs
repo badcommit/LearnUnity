@@ -7,7 +7,6 @@ namespace ChatGPT.Model
     {
         public string model = "gpt-3.5-turbo";
         public List<Message> messages;
-        public double temperature;
         public Request()
         {
         }

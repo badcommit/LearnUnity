@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Threading.Tasks;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D body;
@@ -18,6 +18,36 @@ public class PlayerMovement : MonoBehaviour
     {
         
     }
+    public async void FaceLeft()
+    {
+        horizontalInput = -0.1f;
+        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+        await Task.Delay(500);
+        horizontalInput = 0;
+    }
+
+    public async void FaceRight()
+    {
+        horizontalInput = 0.1f;
+        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+        await Task.Delay(500);
+        horizontalInput = 0;
+    }
+    public void MoveLeft()
+    {
+        Debug.Log($"Moveleft !!!!!!!!!!");
+        horizontalInput = -1f;
+        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+        StartCoroutine(Trigger(3));
+    }
+
+    public void MoveRight()
+    {
+        Debug.Log($"Moveright !!!!!!!!!!");
+        horizontalInput = 1f;
+        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+        StartCoroutine(Trigger(3));
+    }
 
     private void Awake(){
         body = GetComponent<Rigidbody2D>();
@@ -30,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        //horizontalInput = Input.GetAxis("Horizontal");
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 
 
@@ -62,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKey(KeyCode.Space))
             {
-                Jump();
+                //Jump();
             }
         } else
         {
@@ -116,4 +146,16 @@ public class PlayerMovement : MonoBehaviour
     {
         return horizontalInput == 0 && isGrounded() && !onWall();
     }
+
+    IEnumerator Trigger(int times)
+    {
+        for(int i=0; i < times; i++)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        horizontalInput = 0;
+        //code here will execute after 5 seconds
+    }
+
+
 }

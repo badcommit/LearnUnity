@@ -7,7 +7,8 @@ namespace ChatGPT.Model
     {
         public static string GetSecret()
         {
-            return "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";
+            throw new System.Exception("place your key here");
+
         }
         // Use this for initialization
     }

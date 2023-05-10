@@ -25,13 +25,13 @@ public class PlayerAttack : MonoBehaviour
         
         if(Input.GetMouseButton(0) && cooldownTimer > attackCooldown && playerMovement.canAttack())
         {
-            Attack();
+            //Attack();
         }
 
         cooldownTimer += Time.deltaTime;
     }
 
-    private void Attack()
+    public void Attack()
     {
         //openAPITest.ApiTest();
         anim.SetTrigger("attack");
